@@ -1,0 +1,24 @@
+import subprocess
+import re
+
+def scan_wifi():
+    try:
+        # Run iwlist command to scan for WiFi networks
+        result = subprocess.check_output(["sudo", "iwlist", "wlan0", "scan"], universal_newlines=True)
+        
+        # Extract SSIDs using regex
+        ssid_pattern = re.findall(r'ESSID:"(.*?)"', result)
+        
+        if ssid_pattern:
+            print("Available WiFi Networks:")
+            for ssid in ssid_pattern:
+                print(f"- {ssid}")
+        else:
+            print("No WiFi networks found.")
+    except subprocess.CalledProcessError as e:
+        print("Error scanning for WiFi networks:", e)
+    except FileNotFoundError:
+        print("Make sure you have 'iwlist' installed.")
+
+if __name__ == "__main__":
+    scan_wifi()
