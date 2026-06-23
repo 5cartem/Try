@@ -1,11 +1,11 @@
 
 
-print('Please enter your 5 digit password ')
+print('Please enter your 6 digit password ')
 password = input('>')
 
-while len(password) != 5:
-    print('Please enter 5 digit password')
-    print('The password needs 5 digits')
+while len(password) != 6:
+    print('Please enter 6 digit password')
+    print('The password needs 6 digits')
     password = input('>')
 
 
